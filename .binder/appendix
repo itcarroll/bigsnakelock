@@ -1,3 +1,3 @@
-RUN conda create -y -n lock conda-lock
+RUN conda create --yes --name lock conda-lock
 
-RUN conda run -n lock conda-lock install --force-platform osx-arm64 --prefix ${NB_PYTHON_PREFIX} --extras container
+RUN conda run --name lock conda-lock install --prefix ${NB_PYTHON_PREFIX} --extras container
