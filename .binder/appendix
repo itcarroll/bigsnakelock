@@ -1,3 +1,5 @@
 RUN conda create --yes --name lock conda-lock
 
+RUN ls -a
+
 RUN conda run --name lock conda-lock install --prefix ${NB_PYTHON_PREFIX} --extras container
