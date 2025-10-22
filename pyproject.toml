@@ -12,8 +12,8 @@ container = [
   "bash-kernel>=0.9.3",
 ]
 
-# [tool.conda-lock.dependencies]
-# pyinterp = ">=2025.8.1"
+[tool.conda-lock.dependencies]
+pyinterp = ">=2025.8.1"
 
 [tool.conda-lock]
 default-non-conda-source = "pip"
@@ -21,7 +21,7 @@ channels = [
   "conda-forge",
 ]
 platforms = [
-  "linux-aarch64",
+  # "linux-aarch64",
   "linux-64",
   "osx-arm64",
   "osx-64",
