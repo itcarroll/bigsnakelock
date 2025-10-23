@@ -4,20 +4,24 @@ on:
   push:
     paths:
       - .github/workflows/build-container-image.yml
-      - .binder/**
+      - container/**
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout configuration files
-      uses: actions/checkout@main
-      with: 
-        sparse-checkout: .binder
-    - name: Run repo2docker
-      uses: jupyterhub/repo2docker-action@master
-      with: 
-        DOCKER_USERNAME: ${{ github.actor }}
-        DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-        DOCKER_REGISTRY: "ghcr.io"
-        APPENDIX_FILE: .binder/appendix
-        REPO_DIR: /tmp
+      - name: Checkout configurations
+        uses: actions/checkout@main
+        with:
+          sparse-checkout: container
+      - name: Move configurations
+        run: |
+          mv container/* .
+          rmdir container
+      - name: Run repo2docker
+        uses: jupyterhub/repo2docker-action@master
+        with: 
+          DOCKER_USERNAME: ${{ github.actor }}
+          DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          DOCKER_REGISTRY: "ghcr.io"
+          APPENDIX_FILE: appendix
+          REPO_DIR: /tmp
