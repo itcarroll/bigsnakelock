@@ -2,16 +2,22 @@ name: Build container image
 on:
   workflow_dispatch:
   push:
+    paths:
+      - .github/workflows/build-container-image.yml
+      - .binder/**
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout files in repo
+    - name: Checkout configuration files
       uses: actions/checkout@main
-    - name: update jupyter dependencies with repo2docker
+      with: 
+        sparse-checkout: .binder
+    - name: Run repo2docker
       uses: jupyterhub/repo2docker-action@master
       with: 
-        DOCKER_USERNAME: ${{github.actor}}
-        DOCKER_PASSWORD: ${{secrets.GITHUB_TOKEN}}
+        DOCKER_USERNAME: ${{ github.actor }}
+        DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         DOCKER_REGISTRY: "ghcr.io"
         APPENDIX_FILE: .binder/appendix
+        REPO_DIR: /tmp
