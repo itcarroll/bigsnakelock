@@ -1,3 +1,3 @@
 RUN conda create --yes --name lock conda-lock \
- && conda conda run --name lock conda-lock install --prefix ${NB_PYTHON_PREFIX} --extras container
+ && conda conda run --name lock conda-lock install --prefix ${NB_PYTHON_PREFIX} --extras container \
  && conda env remove --yes --name lock
