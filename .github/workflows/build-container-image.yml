@@ -15,6 +15,7 @@ jobs:
           sparse-checkout: container
       - name: Move configurations
         run: |
+          ls -a
           mv container/* .
           rmdir container
       - name: Setup docker buildx
