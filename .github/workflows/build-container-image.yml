@@ -17,11 +17,15 @@ jobs:
         run: |
           mv container/* .
           rmdir container
+      - name: Setup docker buildx
+        uses: docker/setup-buildx-action@v3
       - name: Run repo2docker
-        uses: itcarroll/repo2docker-action@registry-cache
-        with:
-          DOCKER_USERNAME: ${{ github.actor }}
-          DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-          DOCKER_REGISTRY: "ghcr.io"
-          APPENDIX_FILE: appendix
-          REPO_DIR: /tmp
+        run: |
+          docker info -f '{{ .DriverStatus }}'
+      #   uses: itcarroll/repo2docker-action@registry-cache
+      #   with:
+      #     DOCKER_USERNAME: ${{ github.actor }}
+      #     DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+      #     DOCKER_REGISTRY: "ghcr.io"
+      #     APPENDIX_FILE: appendix
+      #     REPO_DIR: /tmp
