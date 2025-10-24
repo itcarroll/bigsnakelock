@@ -19,8 +19,11 @@ jobs:
           rmdir container
       - name: Setup docker buildx
         uses: docker/setup-buildx-action@v3
-      - name: Setup repo2docker
+      - name: Setup python
         uses: actions/setup-python@v6
+        with:
+          cache: 'pip'
+      - name: Install repo2docker
         run: pip install jupyter-repo2docker
       - name: Run repo2docker
         run: repo2docker --help
