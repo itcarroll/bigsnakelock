@@ -33,7 +33,7 @@ jobs:
       - name: Install repo2docker
         run: pip install jupyter-repo2docker
       - name: Run repo2docker
-        run: >
+        run: >-
           jupyter-repo2docker
             --no-run
             --user-id 1000
