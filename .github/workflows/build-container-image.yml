@@ -15,8 +15,8 @@ jobs:
         with: 
           script: |
             const registry = 'ghcr.io'
-            const repo = context.repository
-            const hash = context.sha.substring(0, 7)
+            const repo = process.env.GITHUB_REPOSITORY
+            const hash = process.env.GITHUB_SHA.substring(0, 7)
 
             core.exportVariable('INPUT_IMAGE_NAME', `${registry}/${repo}`)
             core.exportVariable('SHA_NAME', `${registry}/${repo}:${hash}`)
