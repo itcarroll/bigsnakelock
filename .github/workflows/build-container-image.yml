@@ -33,20 +33,19 @@ jobs:
       - name: Install repo2docker
         run: pip install jupyter-repo2docker
       - name: Run repo2docker
-        run: >-
-          jupyter-repo2docker
-            --no-run
-            --user-id 1000
-            --user-name jovyan
-            --target-repo-dir "/tmp/container"
-            --image-name ${SHA_NAME}
-	          --DockerEngine.extra_buildx_build_args="--cache-from=type=registry,ref=${INPUT_IMAGE_NAME}:buildcache"
-	          --DockerEngine.extra_buildx_build_args="--cache-to=type=registry,ref=${INPUT_IMAGE_NAME}:buildcache,mode=max"
-            --label "repo2docker.repo=https://github.com/${GITHUB_REPOSITORY}"
-            --label "repo2docker.ref=${GITHUB_REF}"
-            --appendix "$(< ${PWD}/container/appendix)"
-            --subdir container
-            ${PWD}
+        run: jupyter-repo2docker --help
+            # --no-run
+            # --user-id 1000
+            # --user-name jovyan
+            # --target-repo-dir "/tmp/container"
+            # --image-name ${SHA_NAME}
+	          # --DockerEngine.extra_buildx_build_args="--cache-from=type=registry,ref=${INPUT_IMAGE_NAME}:buildcache"
+	          # --DockerEngine.extra_buildx_build_args="--cache-to=type=registry,ref=${INPUT_IMAGE_NAME}:buildcache,mode=max"
+            # --label "repo2docker.repo=https://github.com/${GITHUB_REPOSITORY}"
+            # --label "repo2docker.ref=${GITHUB_REF}"
+            # --appendix "$(< ${PWD}/container/appendix)"
+            # --subdir container
+            # ${PWD}
 
       #   uses: itcarroll/repo2docker-action@registry-cache
       #   with:
