@@ -33,9 +33,6 @@ jobs:
       - name: Install repo2docker
         run: pip install jupyter-repo2docker
       - name: Run repo2docker
-        env:
-          SHA_NAME:
-          INPUT_IMAGE_NAME: "ghcr.io/${{ github.repository }}"
         run: >
           jupyter-repo2docker
             --no-run
